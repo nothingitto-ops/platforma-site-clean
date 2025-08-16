@@ -19,6 +19,28 @@ input, textarea, button, [contenteditable="true"] {
   user-select: text !important;
 }
 
+/* Отключаем выделение для точек (они только для вида) */
+.mobile-dot, .mobile-zoom-dot {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  pointer-events: none !important; /* Отключаем клики по точкам */
+}
+
+/* Отключаем выделение для кнопок, но оставляем клики */
+.mobile-composition-btn, .mobile-close-btn, .mobile-zoom-close-btn {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  pointer-events: auto !important; /* Оставляем клики для кнопок */
+}
+
 /* Smooth scroll для всей страницы */
 html {
   scroll-behavior: smooth;
@@ -1991,7 +2013,19 @@ nav.topnav.scrolled {
   z-index: 10;
   min-height: 70px; /* Уменьшаем min-height с 100px до 70px */
   /* Увеличиваем невидимую зону для нажатия */
-  padding-top: 55px; /* Добавляем невидимый padding сверху (половина высоты кнопки) */
+  /* padding-top: 55px; Убираем видимый padding */
+}
+
+/* Создаем невидимую зону для нажатия выше кнопки */
+.mobile-cta::before {
+  content: '';
+  position: absolute;
+  top: -35px; /* Невидимая зона выше кнопки */
+  left: 0;
+  right: 0;
+  height: 35px;
+  background: transparent;
+  z-index: 11;
 }
 
 .mobile-cta:hover {
