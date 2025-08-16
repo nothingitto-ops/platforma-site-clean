@@ -28,6 +28,11 @@ input, textarea, button, [contenteditable="true"] {
   -webkit-touch-callout: none !important;
   -webkit-tap-highlight-color: transparent !important;
   pointer-events: none !important; /* Отключаем клики по точкам */
+  /* Убираем все CSS стили - используем только inline стили */
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Отключаем выделение для кнопок, но оставляем клики */
@@ -2106,6 +2111,9 @@ nav.topnav.scrolled {
   /* Контроль зума */
   transform-origin: center center;
   transition: transform 0.1s ease-out;
+  /* Принудительно разрешаем зум */
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
 }
 
 .mobile-zoom-close-btn {
