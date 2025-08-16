@@ -2124,22 +2124,22 @@ button.cta,
   font-weight: 600 !important;
 }
 
-/* Плавные переходы для каталога и баннера */
+/* Мгновенные переходы для каталога и баннера */
 .catalog {
-  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  transition: none !important;
 }
 
 .hero {
-  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  transition: none !important;
 }
 
-/* Плавные переходы для карточек */
+/* Плавные переходы только для карточек при наведении */
 .card {
   transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .card-img img {
-  transition: opacity 0.2s ease !important;
+  transition: none !important;
 }
 
 
