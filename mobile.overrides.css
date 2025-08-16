@@ -1737,7 +1737,7 @@ nav.topnav.scrolled {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  /* Отключаем зум в обычной модалке */
+  /* Полностью отключаем зум в обычной модалке */
   touch-action: pan-x; /* Разрешаем только горизонтальные свайпы */
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1745,6 +1745,11 @@ nav.topnav.scrolled {
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
+  /* Принудительно отключаем зум */
+  -webkit-user-zoom: none;
+  -moz-user-zoom: none;
+  -ms-user-zoom: none;
+  user-zoom: none;
 }
 
 /* Точки навигации */
@@ -2007,6 +2012,11 @@ nav.topnav.scrolled {
   -webkit-tap-highlight-color: transparent;
   /* Разрешаем зум */
   touch-action: manipulation;
+  /* Принудительно включаем зум */
+  -webkit-user-zoom: zoom;
+  -moz-user-zoom: zoom;
+  -ms-user-zoom: zoom;
+  user-zoom: zoom;
 }
 
 .mobile-zoom-close-btn {
@@ -2156,6 +2166,31 @@ button.cta,
 
 .card-img img {
   transition: none !important;
+}
+
+/* Блокируем скролл каталога когда открыта модалка */
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+body.modal-open .catalog {
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+body.modal-open .topnav {
+  pointer-events: none !important;
+}
+
+body.modal-open .filters {
+  pointer-events: none !important;
+}
+
+body.modal-open .site-footer {
+  pointer-events: none !important;
 }
 
 
