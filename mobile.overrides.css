@@ -1517,7 +1517,7 @@ nav.topnav.scrolled {
   .modal-right .desktop-cta {
     width: calc(100% - 80px) !important;
     max-width: 345px !important;
-    padding: 20px 24px !important; /* Увеличиваем padding с 16px до 20px */
+    padding: 16px 24px !important; /* Возвращаем к оригинальному padding */
     background: #000 !important;
     color: #fff !important;
     text-decoration: none !important;
@@ -1532,7 +1532,7 @@ nav.topnav.scrolled {
     bottom: 40px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    min-height: 60px !important; /* Добавляем min-height для большей области клика */
+    min-height: 50px !important; /* Уменьшаем min-height с 60px до 50px */
   }
   
   .modal-right .desktop-cta:hover {
@@ -1813,7 +1813,7 @@ nav.topnav.scrolled {
   /* Блок с информацией */
   .mobile-info-block {
     flex: 1;
-    padding: 8px 20px 100px 20px;
+    padding: 8px 20px 120px 20px; /* Увеличиваем padding-bottom с 100px до 120px */
     background: #fff;
     overflow: hidden !important;
     overflow-y: hidden !important;
@@ -1929,7 +1929,7 @@ nav.topnav.scrolled {
   background: #000;
   color: #fff;
   text-decoration: none;
-  padding: 35px 20px; /* Увеличиваем padding с 25px до 35px */
+  padding: 20px 20px; /* Уменьшаем визуальный padding с 35px до 20px */
   border-radius: 0;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
@@ -1945,7 +1945,7 @@ nav.topnav.scrolled {
   left: 0;
   right: 0;
   z-index: 10;
-  min-height: 100px; /* Увеличиваем min-height с 80px до 100px */
+  min-height: 70px; /* Уменьшаем min-height с 100px до 70px */
 }
 
 .mobile-cta:hover {
