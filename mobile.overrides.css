@@ -1737,6 +1737,14 @@ nav.topnav.scrolled {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  /* Отключаем зум в обычной модалке */
+  touch-action: pan-x; /* Разрешаем только горизонтальные свайпы */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Точки навигации */
@@ -1990,15 +1998,14 @@ nav.topnav.scrolled {
   max-height: 100%;
   object-fit: contain;
   background: #fff;
-  /* Поддержка нативного зума на мобильных */
+  /* Включаем зум только в режиме зума */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  /* Разрешаем зум */
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
-  /* Убираем задержку для лучшего отклика */
+  /* Разрешаем зум */
   touch-action: manipulation;
 }
 
