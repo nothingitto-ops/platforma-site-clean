@@ -2100,6 +2100,14 @@ nav.topnav.scrolled {
   padding-right: 0 !important;
   transform: none !important;
   box-sizing: border-box !important;
+  /* Добавляем отступ снизу для iPhone */
+  padding-bottom: env(safe-area-inset-bottom) !important;
+  margin-bottom: 0 !important;
+}
+
+/* Добавляем отступ для мобильной модалки на iPhone */
+.mobile-modal-content {
+  padding-bottom: env(safe-area-inset-bottom) !important;
 }
 
 /* Дополнительно для всех кнопок CTA */
