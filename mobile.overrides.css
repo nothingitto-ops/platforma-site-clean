@@ -1958,7 +1958,7 @@ nav.topnav.scrolled {
 }
 
 .mobile-main-image.zoomed #mobileMainImg {
-  transform: scale(1.65) translate(0, 0) !important;
+  transform: scale(1.35) translate(0, 0) !important;
   transition: transform 0.03s ease-out;
   cursor: move;
   transform-origin: center center !important;
