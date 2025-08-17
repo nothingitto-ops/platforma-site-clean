@@ -1796,9 +1796,8 @@ nav.topnav.scrolled {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  /* Полностью отключаем зум в обычной модалке */
+  /* Оптимизация для быстрого рендеринга */
   touch-action: pan-x; /* Разрешаем только горизонтальные свайпы */
-  /* Принудительно отключаем зум */
   -webkit-user-zoom: none;
   -moz-user-zoom: none;
   -ms-user-zoom: none;
@@ -1807,6 +1806,11 @@ nav.topnav.scrolled {
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
+  /* Оптимизация производительности */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Счетчик изображений в левом верхнем углу */
