@@ -2151,12 +2151,12 @@ nav.topnav.scrolled {
 
 /* Класс для блокировки свайпов в режиме зума */
 #mobileZoomImg.zoom-blocked {
-  touch-action: none !important;
-  pointer-events: none !important;
+  touch-action: pan-x pan-y !important; /* Разрешаем панорамирование, блокируем зум */
+  pointer-events: auto !important; /* Разрешаем взаимодействия */
 }
 
 #mobileZoomImg.zoom-blocked * {
-  pointer-events: none !important;
+  pointer-events: auto !important; /* Разрешаем взаимодействия */
 }
 
 .mobile-zoom-close-btn {
