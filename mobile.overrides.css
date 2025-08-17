@@ -1918,10 +1918,18 @@ nav.topnav.scrolled {
   align-items: center;
   justify-content: center;
   transition: background 0.3s ease;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
 }
 
 .mobile-zoom-btn:hover {
   background: rgba(0, 0, 0, 0.6);
+}
+
+.mobile-zoom-btn:active {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .mobile-zoom-btn svg {
