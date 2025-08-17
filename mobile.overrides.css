@@ -2131,8 +2131,8 @@ nav.topnav.scrolled {
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
-  /* Разрешаем зум на всех устройствах */
-  touch-action: pan-x pan-y pinch-zoom;
+  /* Разрешаем зум и панорамирование на всех устройствах */
+  touch-action: pan-x pan-y pinch-zoom !important;
   /* Принудительно включаем зум */
   -webkit-user-zoom: zoom;
   -moz-user-zoom: zoom;
