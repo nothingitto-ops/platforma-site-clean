@@ -11,6 +11,18 @@
   outline: none !important;
 }
 
+/* Улучшаем карточки для мобильных устройств */
+.card {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  cursor: pointer !important;
+  transition: transform 0.1s ease !important;
+}
+
+.card:active {
+  transform: scale(0.98) !important;
+}
+
 /* Разрешаем выделение только для текстовых полей и кнопок */
 input, textarea, button, [contenteditable="true"] {
   -webkit-user-select: text !important;
