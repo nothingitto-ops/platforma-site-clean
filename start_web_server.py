@@ -13,9 +13,9 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         parsed_url = urlparse(self.path)
         path = parsed_url.path
         
-        # Если запрос к корню, отдаем index.html из папки web
+        # Если запрос к корню, отдаем index.html
         if path == '/':
-            path = '/web/index.html'
+            path = '/index.html'
         
         # Если запрос к API для получения товаров
         if path == '/api/products':
@@ -42,8 +42,8 @@ def main():
     PORT = 8001
     
     # Проверяем, что файлы сайта существуют
-    if not os.path.exists('web/index.html'):
-        print("❌ Файл web/index.html не найден!")
+    if not os.path.exists('index.html'):
+        print("❌ Файл index.html не найден!")
         return
     
     # Проверяем, что products.json существует
