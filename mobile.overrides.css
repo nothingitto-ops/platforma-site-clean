@@ -885,6 +885,12 @@ nav.topnav.scrolled {
     max-width: 1280px !important;
     height: auto !important;
     min-height: auto !important;
+    /* Стабилизируем каталог - предотвращаем мерцание */
+    transform: translateZ(0) !important;
+    will-change: opacity !important;
+    backface-visibility: hidden !important;
+    -webkit-transform: translateZ(0) !important;
+    -webkit-backface-visibility: hidden !important;
   }
   
   /* Упрощенный статус везде - просто текст без обводки */
@@ -1742,6 +1748,12 @@ nav.topnav.scrolled {
   visibility: hidden;
   transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden !important; /* Добавляем overflow: hidden */
+  /* Фиксируем модалку - предотвращаем скролл и движение */
+  transform: translateZ(0);
+  will-change: opacity, visibility;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
 }
 
 .mobile-modal.open {
