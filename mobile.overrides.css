@@ -1958,15 +1958,15 @@ nav.topnav.scrolled {
 }
 
 .mobile-main-image.zoomed #mobileMainImg {
-  transform: scale(1.35) translate(0, 0) !important;
-  transition: transform 0.03s ease-out;
-  cursor: move;
+  transform: scale(1.2) translate(0, 0) !important;
+  transition: none !important;
+  cursor: move !important;
   transform-origin: center center !important;
   /* Разрешаем перемещение */
   touch-action: pan-x pan-y !important;
   -webkit-user-select: none !important;
   user-select: none !important;
-  /* Ограничиваем размер изображения в контейнере */
+  /* Убираем все ограничения */
   max-width: none !important;
   max-height: none !important;
   width: auto !important;
@@ -1980,6 +1980,11 @@ nav.topnav.scrolled {
   will-change: transform !important;
   -webkit-backface-visibility: hidden !important;
   backface-visibility: hidden !important;
+  /* Убираем все возможные блокировки */
+  pointer-events: auto !important;
+  -webkit-transform: scale(1.2) translate(0, 0) !important;
+  -moz-transform: scale(1.2) translate(0, 0) !important;
+  -ms-transform: scale(1.2) translate(0, 0) !important;
 }
 
 .mobile-main-image.zoomed .mobile-image-actions {
