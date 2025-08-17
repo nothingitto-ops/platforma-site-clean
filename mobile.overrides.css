@@ -17,10 +17,20 @@
   -webkit-touch-callout: none !important;
   cursor: pointer !important;
   transition: transform 0.1s ease !important;
+  /* Улучшаем для скроллинга */
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 
 .card:active {
   transform: scale(0.98) !important;
+}
+
+/* Улучшаем каталог для скроллинга */
+.catalog {
+  -webkit-overflow-scrolling: touch !important;
+  scroll-behavior: smooth !important;
+  touch-action: pan-y !important;
 }
 
 /* Разрешаем выделение только для текстовых полей и кнопок */
@@ -1952,9 +1962,17 @@ nav.topnav.scrolled {
 /* Состояние зума */
 .mobile-main-image.zoomed {
   overflow: hidden !important;
-  position: relative;
+  position: relative !important;
   width: 100% !important;
   height: 100% !important;
+  /* ПРИНУДИТЕЛЬНО РАЗРЕШАЕМ ПЕРЕМЕЩЕНИЕ */
+  pointer-events: auto !important;
+  touch-action: pan-x pan-y !important;
+  /* Убираем все блокировки */
+  z-index: 999 !important;
+  /* Принудительно обновляем стили */
+  display: block !important;
+  visibility: visible !important;
 }
 
 .mobile-main-image.zoomed #mobileMainImg {
@@ -1985,6 +2003,17 @@ nav.topnav.scrolled {
   -webkit-transform: scale(1.2) translate(0, 0) !important;
   -moz-transform: scale(1.2) translate(0, 0) !important;
   -ms-transform: scale(1.2) translate(0, 0) !important;
+  /* ПРИНУДИТЕЛЬНО РАЗРЕШАЕМ ПЕРЕМЕЩЕНИЕ */
+  position: relative !important;
+  z-index: 1000 !important;
+  /* Убираем все возможные ограничения */
+  box-sizing: border-box !important;
+  border: none !important;
+  outline: none !important;
+  /* Принудительно обновляем стили */
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .mobile-main-image.zoomed .mobile-image-actions {
