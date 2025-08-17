@@ -2140,6 +2140,16 @@ nav.topnav.scrolled {
   overflow: auto;
 }
 
+/* Класс для блокировки свайпов в режиме зума */
+#mobileZoomImg.zoom-blocked {
+  touch-action: none !important;
+  pointer-events: none !important;
+}
+
+#mobileZoomImg.zoom-blocked * {
+  pointer-events: none !important;
+}
+
 .mobile-zoom-close-btn {
   position: absolute;
   top: 20px;
