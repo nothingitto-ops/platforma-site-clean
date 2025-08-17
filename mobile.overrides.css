@@ -1940,12 +1940,18 @@ nav.topnav.scrolled {
 /* Состояние зума */
 .mobile-main-image.zoomed {
   overflow: hidden;
+  position: relative;
 }
 
 .mobile-main-image.zoomed #mobileMainImg {
   transform: scale(2);
-  transition: transform 0.3s ease;
-  cursor: zoom-out;
+  transition: transform 0.1s ease;
+  cursor: move;
+  transform-origin: center center;
+  /* Разрешаем перемещение */
+  touch-action: pan-x pan-y;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .mobile-main-image.zoomed .mobile-image-actions {
