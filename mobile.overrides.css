@@ -1161,8 +1161,6 @@ nav.topnav.scrolled {
     gap: 12px !important;
   }
   
-
-  
   .card {
     text-align: center !important;
     display: flex !important;
@@ -1744,9 +1742,6 @@ nav.topnav.scrolled {
   visibility: hidden;
   transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden !important; /* Добавляем overflow: hidden */
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
 }
 
 .mobile-modal.open {
@@ -1763,9 +1758,6 @@ nav.topnav.scrolled {
   background: #fff;
   position: relative;
   overflow: hidden !important; /* Убеждаемся что overflow: hidden */
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
 }
 
 /* Зона изображений - уменьшаем пропорцию до 4:1 */
@@ -1802,8 +1794,9 @@ nav.topnav.scrolled {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  /* Оптимизация для быстрого рендеринга */
+  /* Полностью отключаем зум в обычной модалке */
   touch-action: pan-x; /* Разрешаем только горизонтальные свайпы */
+  /* Принудительно отключаем зум */
   -webkit-user-zoom: none;
   -moz-user-zoom: none;
   -ms-user-zoom: none;
@@ -1812,11 +1805,6 @@ nav.topnav.scrolled {
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
-  /* Оптимизация производительности */
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
 /* Счетчик изображений в левом верхнем углу */
@@ -1881,8 +1869,31 @@ nav.topnav.scrolled {
   top: 20px;
   right: 20px;
   display: flex;
-  gap: 0;
+  gap: 8px;
   z-index: 10;
+}
+
+.mobile-zoom-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.mobile-zoom-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.mobile-zoom-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .mobile-close-btn {
@@ -2083,9 +2094,6 @@ nav.topnav.scrolled {
   /* Предотвращаем прокрутку страницы */
   overflow: hidden;
   touch-action: none;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
 }
 
 .mobile-zoom-modal.open {
@@ -2131,8 +2139,8 @@ nav.topnav.scrolled {
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
-  /* Разрешаем зум и панорамирование на всех устройствах */
-  touch-action: pan-x pan-y pinch-zoom !important;
+  /* Разрешаем зум на всех устройствах */
+  touch-action: pan-x pan-y pinch-zoom;
   /* Принудительно включаем зум */
   -webkit-user-zoom: zoom;
   -moz-user-zoom: zoom;
@@ -2147,16 +2155,6 @@ nav.topnav.scrolled {
   /* Принудительно разрешаем зум */
   -webkit-overflow-scrolling: touch;
   overflow: auto;
-}
-
-/* Класс для блокировки свайпов в режиме зума */
-#mobileZoomImg.zoom-blocked {
-  touch-action: pan-x pan-y !important; /* Разрешаем панорамирование, блокируем зум */
-  pointer-events: auto !important; /* Разрешаем взаимодействия */
-}
-
-#mobileZoomImg.zoom-blocked * {
-  pointer-events: auto !important; /* Разрешаем взаимодействия */
 }
 
 .mobile-zoom-close-btn {
