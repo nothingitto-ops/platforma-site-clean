@@ -20,7 +20,7 @@ input, textarea, button, [contenteditable="true"] {
 }
 
 /* Отключаем выделение для точек (они только для вида) */
-.mobile-dot, .mobile-zoom-dot {
+.mobile-dot {
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
@@ -36,7 +36,7 @@ input, textarea, button, [contenteditable="true"] {
 }
 
 /* Отключаем выделение для кнопок, но оставляем клики */
-.mobile-composition-btn, .mobile-close-btn, .mobile-zoom-close-btn {
+.mobile-composition-btn, .mobile-close-btn {
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
@@ -47,13 +47,13 @@ input, textarea, button, [contenteditable="true"] {
 }
 
 /* Делаем крестики более прозрачными */
-.mobile-close-btn, .mobile-zoom-close-btn {
+.mobile-close-btn {
   opacity: 0.6 !important;
   transition: opacity 0.2s ease !important;
 }
 
-.mobile-close-btn:hover, .mobile-zoom-close-btn:hover,
-.mobile-close-btn:active, .mobile-zoom-close-btn:active {
+.mobile-close-btn:hover,
+.mobile-close-btn:active {
   opacity: 0.8 !important;
 }
 
@@ -1742,6 +1742,15 @@ nav.topnav.scrolled {
   visibility: hidden;
   transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden !important; /* Добавляем overflow: hidden */
+  /* Стабильная фиксация модалки */
+  transform: translateZ(0);
+  will-change: opacity, visibility;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  /* Полная блокировка скролла */
+  touch-action: none;
+  -webkit-overflow-scrolling: auto;
 }
 
 .mobile-modal.open {
@@ -2055,154 +2064,9 @@ nav.topnav.scrolled {
   background: #333;
 }
 
-/* Модальное окно для увеличенного изображения */
-.mobile-zoom-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  z-index: 1100;
-  display: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Предотвращаем прокрутку страницы */
-  overflow: hidden;
-  touch-action: none;
-}
-
-.mobile-zoom-modal.open {
-  display: flex;
-  opacity: 1;
-  visibility: visible;
-}
-
-.mobile-zoom-content {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Поддержка зума */
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
-  /* Убираем выделение */
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  -webkit-touch-callout: none !important;
-  -webkit-tap-highlight-color: transparent !important;
-  /* Предотвращаем прокрутку страницы */
-  touch-action: pan-x pan-y pinch-zoom;
-}
-
-#mobileZoomImg {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  background: #fff;
-  /* Полностью отключаем выделение */
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  -webkit-touch-callout: none !important;
-  -webkit-tap-highlight-color: transparent !important;
-  /* Убираем все возможные выделения */
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  /* Разрешаем зум на всех устройствах */
-  touch-action: pan-x pan-y pinch-zoom;
-  /* Принудительно включаем зум */
-  -webkit-user-zoom: zoom;
-  -moz-user-zoom: zoom;
-  -ms-user-zoom: zoom;
-  user-zoom: zoom;
-  /* Специально для Android */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  /* Контроль зума */
-  transform-origin: center center;
-  transition: transform 0.1s ease-out;
-  /* Принудительно разрешаем зум */
-  -webkit-overflow-scrolling: touch;
-  overflow: auto;
-}
-
-.mobile-zoom-close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
-}
-
-.mobile-zoom-close-btn:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-.mobile-zoom-close-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* Точки для зум модалки */
-#mobileZoomDots {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  z-index: 1200;
-}
-
-.mobile-zoom-dot {
-  width: 8px !important;
-  height: 8px !important;
-  border: none !important;
-  border-radius: 50% !important;
-  background: rgba(0, 0, 0, 0.3) !important;
-  cursor: pointer !important;
-  transition: background 0.3s ease !important;
-  padding: 0 !important;
-  flex-shrink: 0 !important;
-  min-width: 8px !important;
-  min-height: 8px !important;
-  max-width: 8px !important;
-  max-height: 8px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 !important;
-}
-
-.mobile-zoom-dot.active {
-  background: rgba(0, 0, 0, 1) !important;
-}
-
-.mobile-zoom-dot:hover {
-  background: rgba(0, 0, 0, 0.6) !important;
-}
-
 /* Скрываем новую модалку на десктопе */
 @media (min-width: 769px) {
-  .mobile-modal,
-  .mobile-zoom-modal {
+  .mobile-modal {
     display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
