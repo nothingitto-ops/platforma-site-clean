@@ -34,3 +34,7 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Local applications
+simple-manager.py
+simple-manager-clean.py
