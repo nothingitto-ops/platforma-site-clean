@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# 
+# 🛍️ Catalog Manager Pro v2.2
+# Последние изменения (18.08.2025):
+# ✅ Обновлена черная иконка сайта
+# ✅ Добавлена 6-я фотография для "Пояс P2" 
+# ✅ Добавлена 5-я фотография для "Фартук"
+# ✅ Исправлена кнопка "Состав" в мобильной модалке (проблема с замыканием)
+# ✅ ОТКЛЮЧЕНА синхронизация с Google Sheets
+# ✅ ИСПРАВЛЕНА кнопка "Редактировать" - теперь работает корректно
+# ✅ ИСПРАВЛЕНО форматирование цены - автоматически убирает пробелы и символы валюты
+# ✅ Все изменения закоммичены в git
 
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, scrolledtext
@@ -17,7 +28,7 @@ import io
 class ImprovedCatalogApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("🛍️ Catalog Manager Pro")
+        self.root.title("🛍️ Catalog Manager Pro v2.2 - Очищенная версия без Google Sheets")
         self.root.geometry("1200x800")
         
         # Настройка стилей для кнопок
@@ -81,9 +92,9 @@ class ImprovedCatalogApp:
         top_frame.pack(fill=tk.X, padx=10, pady=5)
         
         # Кнопки управления
-        sync_btn = ttk.Button(top_frame, text="🔄 Синхронизировать с Google Sheets", 
-                             command=self.sync_google_sheets, width=35)
-        sync_btn.pack(side=tk.LEFT, padx=5, pady=2)
+        # sync_btn = ttk.Button(top_frame, text="🔄 Синхронизировать с Google Sheets", 
+        #                      command=self.sync_google_sheets, width=35)
+        # sync_btn.pack(side=tk.LEFT, padx=5, pady=2)
         
         deploy_btn = ttk.Button(top_frame, text="🚀 Деплой на GitHub", 
                                command=self.deploy_to_github, width=20)
@@ -372,6 +383,18 @@ class ImprovedCatalogApp:
             messagebox.showerror("Ошибка", "Название товара не может быть пустым!")
             return
         
+        # Очищаем цену от лишних символов и форматируем
+        if new_price:
+            # Убираем пробелы, рубли, р. и другие символы
+            clean_price = new_price.replace(' ', '').replace('₽', '').replace('р.', '').replace('р', '')
+            # Проверяем, что это число
+            try:
+                int(clean_price)
+                new_price = clean_price  # Сохраняем как число без форматирования
+            except ValueError:
+                messagebox.showerror("Ошибка", "Цена должна быть числом!")
+                return
+        
         # Обновляем товар
         self.current_editing_product['title'] = new_title
         self.current_editing_product['price'] = new_price
@@ -647,25 +670,24 @@ class ImprovedCatalogApp:
         if not product:
             return
         
-        # Заполняем форму
-        self.clear_form()
-        self.title_entry.insert(0, product["title"])
-        self.desc_entry.insert(0, product.get("desc", ""))
-        self.price_entry.insert(0, product.get("price", ""))
-        self.meta_entry.insert(0, product.get("meta", ""))
+        # Заполняем поля редактирования
+        self.edit_title_entry.delete(0, tk.END)
+        self.edit_title_entry.insert(0, product["title"])
         
-        # Загружаем изображения
-        if product["images"]:
-            image_names = product["images"].split("|")
-            for img_name in image_names:
-                img_path = os.path.join(product["folder"], img_name)
-                if os.path.exists(img_path):
-                    self.selected_images.append(img_path)
-            self.update_images_list()
+        self.edit_price_entry.delete(0, tk.END)
+        self.edit_price_entry.insert(0, product.get("price", ""))
         
-        # Удаляем старый товар
-        self.products.remove(product)
-        self.refresh_products_list()
+        self.edit_desc_entry.delete(0, tk.END)
+        self.edit_desc_entry.insert(0, product.get("desc", ""))
+        
+        self.edit_meta_entry.delete(0, tk.END)
+        self.edit_meta_entry.insert(0, product.get("meta", ""))
+        
+        # Сохраняем текущий товар для редактирования
+        self.current_editing_product = product
+        
+        # Показываем изображения
+        self.show_product_images(product)
     
     def delete_product(self):
         """Удаление товара"""
@@ -689,7 +711,7 @@ class ImprovedCatalogApp:
                 self.save_products()
                 self.refresh_products_list()
                 
-                messagebox.showinfo("Успех", f"Товар '{title}' удален!\n\nНажмите '🔄 Синхронизировать' чтобы убрать его из Google Sheets")
+                messagebox.showinfo("Успех", f"Товар '{title}' удален!")
     
     def reorder_images(self):
         """Изменение порядка изображений"""
@@ -1033,26 +1055,9 @@ class ImprovedCatalogApp:
         except Exception as e:
             print(f"Ошибка сохранения товаров: {e}")
 
-    def sync_google_sheets(self):
-        """Универсальная синхронизация с Google Sheets"""
-        try:
-            import subprocess
-            result = subprocess.run(['python', '-c', 
-                                   'from auto_update_oauth2 import full_sync_oauth2; full_sync_oauth2()'], 
-                                  capture_output=True, text=True, encoding='utf-8')
-            
-            if result.returncode == 0:
-                messagebox.showinfo("✅ Синхронизация завершена!", 
-                                  f"🎉 Google Sheets полностью синхронизирован!\n\n"
-                                  f"📊 Все изменения применены\n"
-                                  f"🗑️ Удаленные товары убраны\n"
-                                  f"➕ Новые товары добавлены\n"
-                                  f"⏰ Время: {datetime.now().strftime('%H:%M:%S')}")
-            else:
-                messagebox.showerror("Ошибка", f"Ошибка синхронизации:\n{result.stderr}")
-                
-        except Exception as e:
-            messagebox.showerror("Ошибка", f"Не удалось синхронизировать:\n{e}")
+    # def sync_google_sheets(self):
+    #     """Универсальная синхронизация с Google Sheets - ОТКЛЮЧЕНО"""
+    #     messagebox.showinfo("Информация", "Синхронизация с Google Sheets отключена.\nИспользуйте прямое редактирование products.json")
 
     def deploy_to_github(self):
         """Деплой на GitHub Pages"""
