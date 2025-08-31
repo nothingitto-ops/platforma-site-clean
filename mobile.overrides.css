@@ -1824,8 +1824,9 @@ nav.topnav.scrolled {
 #mobileMainImg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Показываем всю фотографию без обрезания */
   object-position: center;
+  background: #f8f8f8; /* Светлый фон для пустых областей */
   /* Полностью отключаем зум в обычной модалке */
   touch-action: pan-x; /* Разрешаем только горизонтальные свайпы */
   /* Принудительно отключаем зум */
