@@ -2181,6 +2181,12 @@ nav.topnav.scrolled {
   -webkit-tap-highlight-color: transparent;
   pointer-events: auto;
   cursor: pointer;
+  /* Предотвращаем зум на iOS */
+  touch-action: pan-x pan-y;
+  -webkit-user-zoom: none;
+  -moz-user-zoom: none;
+  -ms-user-zoom: none;
+  user-zoom: none;
 }
 
 .fullscreen-counter {
