@@ -1149,7 +1149,7 @@ nav.topnav.scrolled {
   /* Десктопная сетка - 3 карточки в ряд */
   .catalog {
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 24px !important;
+    gap: 32px !important;
     padding: 0 40px !important;
   }
   
@@ -1233,7 +1233,7 @@ nav.topnav.scrolled {
 @media (min-width: 1101px) {
   .catalog {
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 24px !important;
+    gap: 32px !important;
     padding: 0 40px !important;
   }
 }
