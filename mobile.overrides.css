@@ -1106,9 +1106,8 @@ nav.topnav.scrolled {
   .card-img img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Показываем всю фотографию без обрезания */
+    object-fit: cover; /* Красивое отображение в каталоге */
     object-position: center;
-    background: #f8f8f8; /* Светлый фон для пустых областей */
     border-radius: 0; /* Убираем скругления для плоского вида */
   }
   
