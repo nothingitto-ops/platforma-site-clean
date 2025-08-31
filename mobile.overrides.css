@@ -1169,7 +1169,7 @@ nav.topnav.scrolled {
   .filters {
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
     gap: 12px !important;
     padding: 0 20px !important;
     margin: 16px 0 !important;
