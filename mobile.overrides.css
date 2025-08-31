@@ -1106,7 +1106,9 @@ nav.topnav.scrolled {
   .card-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Показываем всю фотографию без обрезания */
+    object-position: center;
+    background: #f8f8f8; /* Светлый фон для пустых областей */
     border-radius: 0; /* Убираем скругления для плоского вида */
   }
   
@@ -1142,7 +1144,6 @@ nav.topnav.scrolled {
   .card .status.pre {
     color: #856404;
   }
-}
 
 /* Десктопные стили для контейнера цены и статуса */
 @media (min-width: 769px) {
@@ -1961,11 +1962,6 @@ nav.topnav.scrolled {
 
 /* Убираем все стили зума - больше не нужны */
 
-/* Убираем кнопку зума - больше не нужна */
-.mobile-zoom-btn {
-  display: none !important;
-}
-
   /* Блок с информацией */
   .mobile-info-block {
     flex: 1;
@@ -2140,6 +2136,95 @@ nav.topnav.scrolled {
     visibility: hidden !important;
     pointer-events: none !important;
   }
+}
+
+/* ПОЛНОРАЗМЕРНЫЙ ПРОСМОТР ФОТОГРАФИЙ */
+.fullscreen-gallery {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.fullscreen-gallery.open {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+.fullscreen-gallery-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.fullscreen-gallery img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.fullscreen-counter {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.fullscreen-actions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.fullscreen-close-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.fullscreen-close-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.fullscreen-close-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* ПРИНУДИТЕЛЬНОЕ ИСПРАВЛЕНИЕ КНОПКИ - ДОЛЖНО БЫТЬ В САМОМ КОНЦЕ */
